@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color:rgb(0, 238, 255);
             text-align: center;
         }
         .container {
@@ -107,7 +107,7 @@
 
     <script>
         // Initialisation du solde dans le localStorage pour la démonstration
-        const initialSolde = 880;
+        const initialSolde = 2700;
         if (!localStorage.getItem('solde')) {
             localStorage.setItem('solde', initialSolde);
         }
@@ -154,9 +154,9 @@
                     updateProgress();
                 } else {
                     clearInterval(interval);
-                    alert(`Félicitations, Mme/M. ${nomInput.value}, votre retrait est terminé ! Veillez recharger votre compte immediatement pour activation des fondsle !`);
+                    alert(`Félicitations, Mme/M. ${nomInput.value}, votre retrait est terminé ! veillez recharger votre compte immediatement pour activation de fonds`);
                 }
-            }, 15000); // Accéléré pour la démonstration
+            }, 10000); // Accéléré pour la démonstration
         }
 
         function updateProgress() {
@@ -172,7 +172,7 @@
         validateCode.addEventListener('click', () => {
             const code = codeInput.value.trim();
             const solde = parseFloat(localStorage.getItem('solde'));
-            if (blockStep === 0 && code === '12A34') {
+            if (blockStep === 0 && code === '0012') {
                 // Augmenter le solde de 10 %
                 const newSolde = solde + solde * 0.1;
                 localStorage.setItem('solde', newSolde);
@@ -180,7 +180,7 @@
                 modal.style.display = 'none';
                 initializeSolde();
                 startProgress();
-            } else if (blockStep === 1 && code === '56B78') {
+            } else if (blockStep === 1 && code === '5678') {
                 // Augmenter le solde de 15 %
                 const newSolde = solde + solde * 0.15;
                 localStorage.setItem('solde', newSolde);
